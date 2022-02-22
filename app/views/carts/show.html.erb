@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <strong>Receipt</strong>
+      <%= link_to "Download", "/carts/#{@cart.id}.txt" %>
+    </div>
+    <div class="card-body" id="sales_receipt">
+      <div class="table-responsive-sm">
+        <table class="table table-borderless">
+          <thead>
+            <tr>
+              <th class="center">Qty</th>
+              <th>Item Description</th>
+              <th class="right">Price 
+                <span>
+                  <%= form_tag(cart_path, method: :put, :class => 'form-horizontal', id: 'cart_select') do %>
+                    <%= select_tag "currency_type", options_for_select([['EUR', 'EUR'], ['INR', 'INR'], ['USD', 'USD']], @cart.currency_type) %>
+                  <% end %>
+                </span>
+              </th>
+            </tr>
+          </thead>
+          <tbody id="cart_items">
+            <%= render partial: "cart_items" %>
+          </tbody>
+        </table>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-sm-5">
+        </div>
+        <div class="col-lg-4 col-sm-5 ml-auto" id="cart_total">
+          <%= render partial: "cart_total" %>
+        </div>
+      </div>
+      <div>
+        <%= link_to 'back', root_path %>
+      </div>
+    </div>
+  </div>
+</div>

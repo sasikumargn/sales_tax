@@ -1,0 +1,10 @@
+<% @cart.try(:items).each do |item| %>
+  <tr>
+    <td class="center"><%= item.quantity %></td>
+    <td class="left"><%= item.description %></td>
+    <td class="right" width="16%">
+      <% item_price = @currency_conversion_rate.present? ? @currency_conversion_rate * item.quantity_price : item.quantity_price %>
+      <%= @cart.currency_type%> <%= number_with_precision(item_price, precision: 2) %>
+    </td>
+  </tr>
+<% end %>

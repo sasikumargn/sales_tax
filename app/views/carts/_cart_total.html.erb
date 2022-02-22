@@ -1,0 +1,22 @@
+<table class="table table-clear">
+  <tbody>
+    <tr>
+      <td class="left">
+        <strong>Total Tax</strong>
+      </td>
+      <td class="right" id="sales_tax">
+        <% sales_tax = @currency_conversion_rate.present? ? @currency_conversion_rate * @cart.sales_tax : @cart.sales_tax %>
+        <%= @cart.currency_type%> <%= number_with_precision(sales_tax, precision: 2) %>
+      </td>
+    </tr>
+    <tr>
+      <td class="left">
+        <strong>Total</strong>
+      </td>
+      <td class="right" id="total_cost">
+        <% total_cost = @currency_conversion_rate.present? ? @currency_conversion_rate * @cart.total_cost : @cart.total_cost %>
+        <%= @cart.currency_type%> <%= number_with_precision(total_cost, precision: 2) %>
+      </td>
+    </tr>
+  </tbody>
+</table>

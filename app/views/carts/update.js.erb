@@ -1,0 +1,4 @@
+<% if @cart.errors.blank? %>
+  $("#cart_items").html("<%= escape_javascript(render :partial => "cart_items") %>")
+  $("#cart_total").html("<%= escape_javascript(render :partial => "cart_total") %>")
+<% end %>

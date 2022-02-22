@@ -1,0 +1,26 @@
+<div class="container">
+  <%= form_for @cart, class: "form-horizontal" do |f| %>
+    <%= render "shared/error_messages", :target => @cart %>
+    <h2>Item Details</h2>
+    <div class="form-group row">
+      <label class="control-label col-sm-2">Qty</label>
+      <label class="control-label col-sm-4">Item Description</label>
+      <label class="control-label col-sm-4">Shelf Price</label>
+    </div>
+    <%= f.fields_for :items do |item| %>
+      <div class="form-group row">
+        <div class="col-md-2">
+          <%= item.number_field :quantity, class: "form-control" %>
+        </div>
+        <div class="col-md-4">
+          <%= item.text_field :description, class: "form-control", placeholder: "Description" %>
+        </div>
+        <div class="col-md-4">
+          <%= item.number_field :price, value: item.object.price.present? && item.object.price > 0 ? item.object.price : nil, step: 0.01, class: "form-control", placeholder: "EUR" %>
+        </div>
+      </div>
+    <% end %>
+
+    <%= f.submit "Generate Receipt", class: 'btn btn-primary' %>
+  <% end %>
+</div>
