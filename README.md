@@ -5,7 +5,7 @@ The setups steps expect the following tools installed on the system.
 - Ruby [2.4.0]
 - Rails [5.0.7]
 
-##### 1. Check out the code shared with email (sales_tax)
+##### 1. Check out the code from Github repo
 
 ##### 2. Edit database.yml file with your local configuration
 
