@@ -16,4 +16,9 @@ module ApplicationHelper
         notice: "glyphicon-info-sign"
     }[flash_type.to_sym] || 'glyphicon-screenshot'
   end
+
+  def currency_conversion(amount, currency_rate)
+    (amount * currency_rate).to_f
+  end
+
 end

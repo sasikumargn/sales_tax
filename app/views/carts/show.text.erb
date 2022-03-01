@@ -1,7 +1,7 @@
 Currency: <%= @cart.currency_type %>
 Qty Item Description Price
 <% @cart.try(:items).each do |item| %>
-<%= item.quantity %> <%= item.description %><% item_price = @currency_conversion_rate.present? ? @currency_conversion_rate * item.quantity_price : item.quantity_price %> <%= @cart.currency_type %> <%= number_with_precision(item_price, precision: 2) %>
+<%= item.quantity %> <%= item.description %><% item_price = currency_conversion(item.quantity_price, @currency_conversion_rate) %> <%= @cart.currency_type %> <%= number_with_precision(item_price, precision: 2) %>
 <% end %>
-Total Tax: <% sales_tax = @currency_conversion_rate.present? ? @currency_conversion_rate * @cart.sales_tax : @cart.sales_tax %> <%= @cart.currency_type %> <%= number_with_precision(sales_tax, precision: 2) %>
-Total: <% total_cost = @currency_conversion_rate.present? ? @currency_conversion_rate * @cart.total_cost : @cart.total_cost %> <%= @cart.currency_type %> <%= number_with_precision(total_cost, precision: 2) %>
+Total Tax: <% sales_tax = currency_conversion(@cart.sales_tax, @currency_conversion_rate) -%> <%= @cart.currency_type %> <%= number_with_precision(sales_tax, precision: 2) %>
+Total: <% total_cost = currency_conversion(@cart.total_cost, @currency_conversion_rate) -%> <%= @cart.currency_type %> <%= number_with_precision(total_cost, precision: 2) %>
